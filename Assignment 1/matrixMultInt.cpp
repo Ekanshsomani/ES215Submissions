@@ -5,12 +5,11 @@ using namespace std;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
 
-int main()
+int main(int argc, char* argv[])
 {
     timespec start, end;
 
-    int n = 1024;
-    // cin >> n;
+    int n = atoi(argv[1]);
 
     clock_gettime(CLOCK_MONOTONIC, &start);
     vvi a(n, vi(n, 99)), b(n, vi(n, 99)), c(n, vi(n, 0));

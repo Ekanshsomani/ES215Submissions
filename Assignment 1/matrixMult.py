@@ -1,11 +1,21 @@
+from sys import argv
 from time import time_ns
 
 start = time_ns()
 
-n = int(input())
+def intOrFloat(value):
+    try:
+        return int(value)
+    except ValueError:
+        return float(value)
 
-a = [[99]*n for _ in range(n)]
-b = [[99]*n for _ in range(n)]
+
+n = int(argv[1])
+el = intOrFloat(argv[2])
+# n = 256
+
+a = [[el]*n for _ in range(n)]
+b = [[el]*n for _ in range(n)]
 c = [[0]*n for _ in range(n)]
 
 # a = [[99.99]*n for _ in range(n)]
@@ -19,4 +29,4 @@ for i in range(n):
 
 end = time_ns()
 
-print(end-start)
+print((end-start)/1e9)
