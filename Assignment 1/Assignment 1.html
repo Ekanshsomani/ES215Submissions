@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Assignment 1</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="assignment-1">Assignment 1</h1>
+<p><strong>Course:</strong> ES 215: Computer Organization and Architecture <br>
+<strong>Name:</strong> Ekansh Somani <br>
+<strong>Roll Number:</strong> 20110065 <br>
+<strong>Github Repository Link:</strong> <a href="https://github.com/Ekanshsomani/ES215Submissions/tree/main">github.com/EkanshSomani/ES215Submissions</a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#assignment-1">Assignment 1</a>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#q1">Q1</a>
+<ul>
+<li><a href="#table-1-time-taken-in-seconds">Table 1: Time Taken (in seconds)</a></li>
+<li><a href="#table-2-speed-comparison-faster-by-factor">Table 2: Speed Comparison (faster by factor)</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#q2">Q2</a>
+<ul>
+<li><a href="#case-a-integer-data-type">Case A: Integer Data Type</a></li>
+<li><a href="#case-b-double-data-type">Case B: Double Data Type</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#appendix">Appendix</a>
+<ul>
+<li><a href="#a1-q1-code">A1: Q1 Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="q1">Q1</h2>
+<p><strong>Implement a program(s) to list the first 50 fibonacci numbers preferably in C++ using recursion, loop, recursion and memoization, and loop and memoization.</strong></p>
+<p>My code for this question is given in Appendix A1.</p>
+<p>Points to keep in mind:</p>
+<ul>
+<li>Fiftieth fibonnaci number is 12.5 billion (approx.). Integer type would thus not work, as unsigned int can go at max upto 4 billion (approx.). I would thus be working with unsigned long long.</li>
+<li>We should obtain multiple values of runtimes and then take mean. Errors might otherwise creep into the time taken because of the background processes running on the CPU.</li>
+<li>Since it takes about 3 minutes to determine run times for 50 fibonacci numbers, I have only tried to do it once. I calculated n=15, 30 and 40 fibonacci numbers for speed comparison otherwise.</li>
+<li>In recursion with Memoization, list could be created by simply calling the function once for the highest value, or it could be created incrementally. I have reported results for both the ways.</li>
+</ul>
+<h3 id="table-1-time-taken-in-seconds">Table 1: Time Taken (in seconds)</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Recursion</th>
+<th>Loops    </th>
+<th>Memoized Recursion</th>
+<th>Memoized Recursion (single call)</th>
+<th>Memoized Loops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n=50</td>
+<td>160.151</td>
+<td>3.6e-06</td>
+<td>7e-07</td>
+<td>5e-07</td>
+<td>2e-07</td>
+</tr>
+<tr>
+<td>n=15</td>
+<td>4.1e-06</td>
+<td>3.2e-07</td>
+<td>1.8e-07</td>
+<td>1.4e-07</td>
+<td>7e-08</td>
+</tr>
+<tr>
+<td>n=30</td>
+<td>0.00717726</td>
+<td>1.67e-06</td>
+<td>5.4e-07</td>
+<td>3.5e-07</td>
+<td>2.1e-07</td>
+</tr>
+<tr>
+<td>n=40</td>
+<td>0.711401</td>
+<td>2.44e-06</td>
+<td>6.7e-07</td>
+<td>4.6e-07</td>
+<td>1.9e-07</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-2-speed-comparison-faster-by-factor">Table 2: Speed Comparison (faster by factor)</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Recursion</th>
+<th>Loops</th>
+<th>Memoized Recursion (incr)</th>
+<th>Memoized Recursion</th>
+<th>Memoized Loops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n=50</td>
+<td>1</td>
+<td>44.5 million</td>
+<td>228.8 million</td>
+<td>320.3 million</td>
+<td>800.8 million</td>
+</tr>
+<tr>
+<td>n=15</td>
+<td>1</td>
+<td>12.8125</td>
+<td>22.7778</td>
+<td>29.2857</td>
+<td>58.5714</td>
+</tr>
+<tr>
+<td>n=30</td>
+<td>1</td>
+<td>4297.76</td>
+<td>13291.2</td>
+<td>20506.5</td>
+<td>34177.4</td>
+</tr>
+<tr>
+<td>n=40</td>
+<td>1</td>
+<td>291558</td>
+<td>1.1 million</td>
+<td>1.55 million</td>
+<td>3.75 million</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong> 10 iterations were done for deriving the mean time taken for n=15, 30 and 40.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Memoized loops are the fastest way to compute fibonacci numbers. Single Function call Memoized Recursion is faster than incremental memoized recursion. Loops is 44.5 miilion times faster than recursion for calculating 50 fibonacci number. Memoized recursion is 320 million time faster, whereas Memoized loops are 800 million times faster than recursion. Speed difference between the methods increases exponentially with n.</p>
+<h2 id="q2">Q2</h2>
+<p><strong>Write a simple Matrix Multiplication program for a given NxN matrix in C++ and Python, where N is iterated through the set of values 64, 128, 256, 512 and 1024. N can either be hardcoded or specified as input. Consider two cases (a) Elements of matrix are of data type Integer and (b) Double. In each case,</strong></p>
+<ol>
+<li><strong>Report the output of the ‘time’ describing the system and CPU times</strong></li>
+<li><strong>Using the ‘language hooks’ evaluate the execution time for the meat portions of the program and how much proportion is it w.r.t. total program execution time.</strong></li>
+<li><strong>Plot the (a) and (b) execution times for each of the iterations. And compare the performance (System and Program execution times) of the program for given value of N for the languages.</strong></li>
+</ol>
+<p><strong>Illustrate your observations.</strong></p>
+<p><code>time</code> command gives <code>real</code>, <code>user</code> and <code>sys</code> time as the output. Real time is wall clock time from start to finish of the call. User tells me the amount of time spent in user space actually excecuting the code, whereas Sys tells me the time spent in system calls within the kernel. user+sys will give me the actual cpu time used by the process.</p>
+<p>Now, the question leaves me confused regarding a lot of things. So here are the assumptions I make:</p>
+<ul>
+<li>C++ program is assumed to be pre-compiled. In other words, I use time command to only measure the execution time and use it as program execution time.</li>
+<li>For Part 1, I report the <code>user</code> and <code>sys</code> times as CPU and system time asked for in question.</li>
+<li>For Part 2:
+<ul>
+<li>Total Program Execution Time = <code>user</code> + <code>sys</code> + 0.01.</li>
+<li>Initializing variables and Executing the multiplication are the two meat portions I focus on.</li>
+<li>I had to add 0.01 total program execution time because of the low precision of the time command in linux. This however means that the values for low N aren't reliable, as they are in the range of 0.00 to 0.05. Thus, the final proportion for the meat part was assumed to be the one returned by higher values of N.</li>
+</ul>
+</li>
+<li>For Part 3:
+<ul>
+<li>Program Execution time = <code>user</code> time</li>
+<li>System time = <code>sys</code> time</li>
+</ul>
+</li>
+</ul>
+<!-- 
+My Output Report (dimensions of the output)
+- n (5 values)
+- Int or Float (2 values)
+- program type (3 values)
+- user, sys, meat1, meat2 (4 values)
+- median, standard deviation $\pm$
+ -->
+<p>Also a note regarding the tables:</p>
+<ul>
+<li>All the times given are in seconds.</li>
+<li>Table entries are in the form median <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo></mrow><annotation encoding="application/x-tex">\pm</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">±</span></span></span></span> standard deviation.</li>
+<li>Table for each language will report time it took to execute the meat portion, real time, user time, sys time and mean of ratios of meat time to execution time for all values of n.</li>
+<li>Row for the ratio of meat time to execution time is labelled as prop. Mean of proportion is also given for all values of N and last 3 values of N after each tbale.</li>
+</ul>
+<h3 id="case-a-integer-data-type">Case A: Integer Data Type</h3>
+<table>
+<thead>
+<tr>
+<th>C++</th>
+<th>64</th>
+<th>128</th>
+<th>256</th>
+<th>512</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meat</td>
+<td>0.005±0.001</td>
+<td>0.035±0.005</td>
+<td>0.268±0.002</td>
+<td>2.271±0.114</td>
+<td>17.947±0.492</td>
+</tr>
+<tr>
+<td>real</td>
+<td>0.010±0.006</td>
+<td>0.040±0.010</td>
+<td>0.270±0.006</td>
+<td>2.280±0.116</td>
+<td>17.960±0.494</td>
+</tr>
+<tr>
+<td>user</td>
+<td>0.000±0.006</td>
+<td>0.030±0.006</td>
+<td>0.270±0.006</td>
+<td>2.260±0.117</td>
+<td>17.950±0.494</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0.000±0.000</td>
+<td>0.000±0.000</td>
+<td>0.000±0.006</td>
+<td>0.000±0.000</td>
+<td>0.010±0.006</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>0.383</td>
+<td>0.817</td>
+<td>0.960</td>
+<td>0.997</td>
+<td>0.999</td>
+</tr>
+</tbody>
+</table>
+<p>mean of proportion:</p>
+<ul>
+<li>Over all values of N: 0.8311617929811957</li>
+<li>Over last 3 values of N: 0.9853</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>64</th>
+<th>128</th>
+<th>256</th>
+<th>512</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meat</td>
+<td>0.120±0.008</td>
+<td>0.852±0.087</td>
+<td>5.786±0.137</td>
+<td>48.938±3.065</td>
+<td>451.557±40.034</td>
+</tr>
+<tr>
+<td>real</td>
+<td>0.15±0.023</td>
+<td>0.88±0.083</td>
+<td>5.82±0.135</td>
+<td>48.99±3.075</td>
+<td>451.67±40.018</td>
+</tr>
+<tr>
+<td>user</td>
+<td>0.12±0.012</td>
+<td>0.86±0.074</td>
+<td>5.78±0.106</td>
+<td>48.94±3.067</td>
+<td>451.44±40.059</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0.0±0.006</td>
+<td>0.0±0.006</td>
+<td>0.03±0.030</td>
+<td>0.05±0.015</td>
+<td>0.19±0.036</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>0.865</td>
+<td>0.977</td>
+<td>0.995</td>
+<td>0.999</td>
+<td>0.999</td>
+</tr>
+</tbody>
+</table>
+<p>mean of proportion:</p>
+<ul>
+<li>Over all values of N: 0.9675217952976901</li>
+<li>Over last 3 values of N: 0.997</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Numpy</th>
+<th>64</th>
+<th>128</th>
+<th>256</th>
+<th>512</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meat</td>
+<td>0.000±0.000</td>
+<td>0.002±0.001</td>
+<td>0.065±0.008</td>
+<td>1.971±0.063</td>
+<td>14.811±1.499</td>
+</tr>
+<tr>
+<td>real</td>
+<td>0.190±0.099</td>
+<td>0.200±0.040</td>
+<td>0.260±0.017</td>
+<td>2.160±0.070</td>
+<td>14.970±1.507</td>
+</tr>
+<tr>
+<td>user</td>
+<td>0.990±0.025</td>
+<td>1.020±0.017</td>
+<td>1.070±0.015</td>
+<td>2.940±0.089</td>
+<td>15.810±1.524</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0.030±0.032</td>
+<td>0.030±0.026</td>
+<td>0.030±0.020</td>
+<td>0.050±0.010</td>
+<td>0.070±0.036</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>0.000</td>
+<td>0.003</td>
+<td>0.060</td>
+<td>0.653</td>
+<td>0.929</td>
+</tr>
+</tbody>
+</table>
+<p>mean of proportion:</p>
+<ul>
+<li>Over all values of N: 0.32912055200433005</li>
+<li>Over last 3 values of N: 0.5473</li>
+</ul>
+<p><strong>Graphs:</strong></p>
+<p><img src="file:///d:\OneDrive - iitgn.ac.in\Courses, Projects, and Notes\46. ES 215 - Computer Organization and Architecture\Assignments\Assignment 1\image.png" alt="User Time Comparison">
+<img src="file:///d:\OneDrive - iitgn.ac.in\Courses, Projects, and Notes\46. ES 215 - Computer Organization and Architecture\Assignments\Assignment 1\image-1.png" alt="Sys Time Comparson"></p>
+<p>Note: There are supposed to be 3 points for each language for each value of N. Some points are missing because zero values aren't visible as y is on log scale. Thus missing points should be assumed to be zero.</p>
+<h3 id="case-b-double-data-type">Case B: Double Data Type</h3>
+<table>
+<thead>
+<tr>
+<th>C++</th>
+<th>64</th>
+<th>128</th>
+<th>256</th>
+<th>512</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meat</td>
+<td>0.006±0.002</td>
+<td>0.033±0.003</td>
+<td>0.298±0.036</td>
+<td>2.663±0.225</td>
+<td>22.399±1.171</td>
+</tr>
+<tr>
+<td>real</td>
+<td>0.010±0.006</td>
+<td>0.040±0.000</td>
+<td>0.300±0.035</td>
+<td>2.670±0.224</td>
+<td>22.420±1.169</td>
+</tr>
+<tr>
+<td>user</td>
+<td>0.000±0.006</td>
+<td>0.030±0.000</td>
+<td>0.300±0.038</td>
+<td>2.660±0.228</td>
+<td>22.400±1.175</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0.000±0.006</td>
+<td>0.000±0.006</td>
+<td>0.000±0.000</td>
+<td>0.000±0.000</td>
+<td>0.010±0.006</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>0.350</td>
+<td>0.810</td>
+<td>0.971</td>
+<td>0.996</td>
+<td>0.999</td>
+</tr>
+</tbody>
+</table>
+<p>mean of proportion:</p>
+<ul>
+<li>Over all values of N: 0.8252008922063341</li>
+<li>Over last 3 values of N: 0.9886</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>64</th>
+<th>128</th>
+<th>256</th>
+<th>512</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meat</td>
+<td>0.079±0.006</td>
+<td>0.610±0.049</td>
+<td>5.074±0.360</td>
+<td>46.664±6.880</td>
+<td>350.864±6.601</td>
+</tr>
+<tr>
+<td>real</td>
+<td>0.110±0.006</td>
+<td>0.640±0.045</td>
+<td>5.110±0.356</td>
+<td>46.710±6.882</td>
+<td>350.980±6.601</td>
+</tr>
+<tr>
+<td>user</td>
+<td>0.080±0.006</td>
+<td>0.610±0.040</td>
+<td>5.100±0.358</td>
+<td>46.640±6.870</td>
+<td>350.750±6.529</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0.000±0.006</td>
+<td>0.000±0.006</td>
+<td>0.010±0.010</td>
+<td>0.040±0.006</td>
+<td>0.170±0.072</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>0.831</td>
+<td>0.975</td>
+<td>0.994</td>
+<td>0.999</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+<p>mean of proportion:</p>
+<ul>
+<li>Over all values of N: 0.9598278695399358</li>
+<li>Over last 3 values of N: 0.9976</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Numpy</th>
+<th>64</th>
+<th>128</th>
+<th>256</th>
+<th>512</th>
+<th>1024</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meat</td>
+<td>0.000±0.000</td>
+<td>0.008±0.003</td>
+<td>0.009±0.002</td>
+<td>0.013±0.000</td>
+<td>0.056±0.023</td>
+</tr>
+<tr>
+<td>real</td>
+<td>0.180±0.015</td>
+<td>0.220±0.021</td>
+<td>0.200±0.036</td>
+<td>0.190±0.012</td>
+<td>0.260±0.032</td>
+</tr>
+<tr>
+<td>user</td>
+<td>1.030±0.055</td>
+<td>1.260±0.155</td>
+<td>1.070±0.012</td>
+<td>1.060±0.046</td>
+<td>1.540±0.272</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0.010±0.015</td>
+<td>0.090±0.046</td>
+<td>0.130±0.079</td>
+<td>0.070±0.035</td>
+<td>0.100±0.023</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>0.000</td>
+<td>0.005</td>
+<td>0.007</td>
+<td>0.012</td>
+<td>0.039</td>
+</tr>
+</tbody>
+</table>
+<p>mean of proportion:</p>
+<ul>
+<li>Over all values of N: 0.012631899668762308</li>
+<li>Over last 3 values of N: 0.0193</li>
+</ul>
+<p><strong>Graphs:</strong></p>
+<p><img src="file:///d:\OneDrive - iitgn.ac.in\Courses, Projects, and Notes\46. ES 215 - Computer Organization and Architecture\Assignments\Assignment 1\image-2.png" alt="User time comparison">
+<img src="file:///d:\OneDrive - iitgn.ac.in\Courses, Projects, and Notes\46. ES 215 - Computer Organization and Architecture\Assignments\Assignment 1\image-3.png" alt="Sys time comparison"></p>
+<h3 id="conclusion-1">Conclusion</h3>
+<ul>
+<li>Python is extremely slow. C++ is much faster than Python. But Python with Numpy gives almost the same and in many cases faster performance than C++.</li>
+<li>C++ slows down a bit for operation on the doubles. No such effect is observed on Python and Numpy. This leads Numpy being much faster than C++ for operation on doubles.</li>
+<li>Meat portions consitute about 98% of execution time for Python and C++. But for Numpy, that portion is about 50% at low values of N. But still reaches above 90% for higher values for Integer data types. But its less than 20% for Float data types.
+<ul>
+<li>This indicates that a lot of speedup is still possible for Python and C++, as the multiplications can be parellelized.</li>
+<li>But for Numpy with Float data types, the speedup won't be that much.</li>
+</ul>
+</li>
+</ul>
+<p>I haven't added the code for this question in appendix. Please refer to the github repository for the code.</p>
+<h2 id="appendix">Appendix</h2>
+<h3 id="a1-q1-code">A1: Q1 Code</h3>
+<pre><code class="language-C++">
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ull;
+<span class="hljs-keyword">typedef</span> vector&lt;<span class="hljs-type">double</span>&gt; vd;
+
+ull fibrec[<span class="hljs-number">51</span>], fibloop[<span class="hljs-number">51</span>], fibdp[<span class="hljs-number">51</span>], fibopt[<span class="hljs-number">51</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">inline</span> ull <span class="hljs-title">rec</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>
+</span>{
+    <span class="hljs-keyword">if</span>(i&lt;=<span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1ULL</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">rec</span>(i<span class="hljs-number">-1</span>)+<span class="hljs-built_in">rec</span>(i<span class="hljs-number">-2</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">inline</span> ull <span class="hljs-title">loop</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>
+</span>{
+    ull ans{<span class="hljs-number">1</span>}, prev{<span class="hljs-number">1</span>}, temp;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">3</span>; j&lt;=i; j++)
+    {
+        temp = ans;
+        ans += prev;
+        prev = temp;
+    }
+    <span class="hljs-keyword">return</span> ans;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">inline</span> ull <span class="hljs-title">dp</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>
+</span>{
+    <span class="hljs-keyword">if</span>(fibdp[i]!=<span class="hljs-number">0ULL</span>) <span class="hljs-keyword">return</span> fibdp[i];
+
+    <span class="hljs-keyword">return</span> fibdp[i] = <span class="hljs-built_in">dp</span>(i<span class="hljs-number">-1</span>)+<span class="hljs-built_in">dp</span>(i<span class="hljs-number">-2</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">optimal</span><span class="hljs-params">(<span class="hljs-type">int</span> upto)</span>
+</span>{
+    fibopt[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+    fibopt[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">3</span>; i&lt;upto; i++) fibopt[i] = fibopt[i<span class="hljs-number">-1</span>]+fibopt[i<span class="hljs-number">-2</span>];
+}
+
+<span class="hljs-comment">/*
+// testing that functions are correct
+int main()
+{
+    memo[1] = 1;
+    memo[2] = 1;
+    optimal();
+
+    printf(
+        &quot;1st Fibonacci number: %llu %llu %llu %llu\n&quot;, 
+        rec(1), loop(1), dp(1), fibs[1]
+    );
+    printf(
+        &quot;5th Fibonacci number: %llu %llu %llu %llu\n&quot;, 
+        rec(5), loop(5), dp(5), fibs[5]
+    );
+    printf(
+        &quot;15th Fibonacci number: %llu %llu %llu %llu\n&quot;, 
+        rec(15), loop(15), dp(15), fibs[15]
+    );
+    printf(
+        &quot;50th Fibonacci number: %llu %llu %llu %llu\n&quot;, 
+        rec(50), loop(50), dp(50), fibs[50]
+    );
+    return 0;
+}
+*/</span>
+
+<span class="hljs-function"><span class="hljs-keyword">inline</span> vd <span class="hljs-title">getTimes</span><span class="hljs-params">(<span class="hljs-type">int</span> upto)</span>
+</span>{
+    <span class="hljs-built_in">memset</span>(fibrec, <span class="hljs-number">0ULL</span>, <span class="hljs-keyword">sizeof</span> fibrec);
+    <span class="hljs-built_in">memset</span>(fibloop, <span class="hljs-number">0ULL</span>, <span class="hljs-keyword">sizeof</span> fibloop);
+    <span class="hljs-built_in">memset</span>(fibdp, <span class="hljs-number">0ULL</span>, <span class="hljs-keyword">sizeof</span> fibdp);
+    <span class="hljs-built_in">memset</span>(fibopt, <span class="hljs-number">0ULL</span>, <span class="hljs-keyword">sizeof</span> fibopt);
+
+    <span class="hljs-type">double</span> recTime, loopTime, dpTime, dpTime1, optTime;
+    timespec start, end;
+
+
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;start);
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;upto; i++) fibrec[i] = <span class="hljs-built_in">rec</span>(i);
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;end);
+
+    recTime = (end.tv_sec - start.tv_sec) * <span class="hljs-number">1e9</span>;
+    recTime = (recTime + (end.tv_nsec - start.tv_nsec)) * <span class="hljs-number">1e-9</span>;
+ 
+
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;start);
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;upto; i++) fibloop[i] = <span class="hljs-built_in">loop</span>(i);
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;end);
+
+    loopTime = (end.tv_sec - start.tv_sec) * <span class="hljs-number">1e9</span>;
+    loopTime = (loopTime + (end.tv_nsec - start.tv_nsec)) * <span class="hljs-number">1e-9</span>;
+
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;start);
+    fibdp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>; fibdp[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;upto; i++) <span class="hljs-built_in">dp</span>(i);
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;end);
+
+    dpTime = (end.tv_sec - start.tv_sec) * <span class="hljs-number">1e9</span>;
+    dpTime = (dpTime + (end.tv_nsec - start.tv_nsec)) * <span class="hljs-number">1e-9</span>;
+
+
+    <span class="hljs-built_in">memset</span>(fibdp, <span class="hljs-number">0ULL</span>, <span class="hljs-keyword">sizeof</span> fibdp);
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;start);
+    fibdp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>; fibdp[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>; <span class="hljs-built_in">dp</span>(upto<span class="hljs-number">-1</span>);
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;end);
+
+    dpTime1 = (end.tv_sec - start.tv_sec) * <span class="hljs-number">1e9</span>;
+    dpTime1 = (dpTime1 + (end.tv_nsec - start.tv_nsec)) * <span class="hljs-number">1e-9</span>;
+
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;start);
+    <span class="hljs-built_in">optimal</span>(upto);
+    <span class="hljs-built_in">clock_gettime</span>(CLOCK_MONOTONIC, &amp;end);
+
+    optTime = (end.tv_sec - start.tv_sec) * <span class="hljs-number">1e9</span>;
+    optTime = (optTime + (end.tv_nsec - start.tv_nsec)) * <span class="hljs-number">1e-9</span>;
+
+    vd vec = {recTime, loopTime, dpTime, dpTime1, optTime};
+    <span class="hljs-keyword">return</span> vec;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">speedComp</span><span class="hljs-params">(vd vec)</span>
+</span>{
+    cout &lt;&lt; <span class="hljs-string">&quot;Time: &quot;</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">5</span>; i++) cout &lt;&lt; vec[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+    cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span> &lt;&lt; <span class="hljs-string">&quot;Speed Comparison: &quot;</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">5</span>; i++) cout &lt;&lt; vec[<span class="hljs-number">0</span>]/vec[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+    cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// vd vec = getTimes(51);</span>
+    <span class="hljs-comment">// speedComp(vec);</span>
+
+    <span class="hljs-function">vd <span class="hljs-title">vec</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span></span>;
+    vd vecs[<span class="hljs-number">10</span>];
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++)
+        vecs[i] = <span class="hljs-built_in">getTimes</span>(<span class="hljs-number">45</span>);
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">5</span>; i++)
+    {
+        vec[i] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>; j&lt;<span class="hljs-number">10</span>; j++)
+            vec[i] += vecs[j][i];
+        vec[i] /= <span class="hljs-number">10</span>;
+    }
+    <span class="hljs-built_in">speedComp</span>(vec);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

@@ -5,7 +5,9 @@
 **Roll Number:** 20110065 <br>
 **Github Repository Link:** [github.com/EkanshSomani/ES215Submissions](https://github.com/Ekanshsomani/ES215Submissions/tree/main)
 
+## Table of Contents
 - [Assignment 1](#assignment-1)
+  - [Table of Contents](#table-of-contents)
   - [Q1](#q1)
     - [Table 1: Time Taken (in seconds)](#table-1-time-taken-in-seconds)
     - [Table 2: Speed Comparison (faster by factor)](#table-2-speed-comparison-faster-by-factor)
