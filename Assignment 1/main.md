@@ -49,6 +49,62 @@ Memoized loops are the fastest way to compute fibonacci numbers. Single Function
  
 **Illustrate your observations.**
 
+``time`` command gives ``real``, `user` and `sys` time as the output. Real time is wall clock time from start to finish of the call. User tells me the amount of time spent in user space actually excecuting the code, whereas Sys tells me the time spent in system calls within the kernel. user+sys will give me the actual cpu time used by the process.
+
+Now, the question leaves me confused regarding a lot of things. So here are the assumptions I make:
+
+- For Part 1, I report the `user` and `sys` times as CPU and system time asked for in question.
+- For Part 2:
+  - Total Program Execution Time = `user` + `sys` Time.
+  - Initializing variables and Executing the multiplication are the two meat portions I focus on.
+- For Part 3:
+  - Program Execution time = `user` time
+  - System time = `sys` time
+
+<!-- 
+My Output Report (dimensions of the output)
+- n (5 values)
+- Int or Float (2 values)
+- program type (3 values)
+- user and sys (2 values)
+- median, standard deviation
+ -->
+
+### Case A: Integer Data Type
+
+| Real | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| Python | | | | | |
+| Numpy | | | | | |
+| C++ | | | | | |
+
+| User | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| Python | | | | | |
+| Numpy | | | | | |
+| C++ | | | | | |
+
+| Sys | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| Python | | | | | |
+| Numpy | | | | | |
+| C++ | | | | | |
+
+| meat1 | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| Python | | | | | |
+| Numpy | | | | | |
+| C++ | | | | | |
+
+| meat2 | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| Python | | | | | |
+| Numpy | | | | | |
+| C++ | | | | | |
+
+### Case B: Double Data Type
+
+
 ## Appendix
 
 ### A1: Q1 Code
@@ -210,3 +266,5 @@ int main()
 }
 
 ```
+
+

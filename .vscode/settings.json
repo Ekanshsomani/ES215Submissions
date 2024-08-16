@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "ostream": "cpp"
+    },
+    "[markdown]": {
+        "editor.cursorSurroundingLines": 0
+    }
+}

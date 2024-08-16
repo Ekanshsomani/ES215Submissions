@@ -121,10 +121,10 @@ inline vd getTimes(int upto)
     return vec;
 }
 
-inline void speedComp(vd vec)
+inline void speedComp(vd vec, vd sd)
 {
-    cout << "Time: ";
-    for(int i=0; i<5; i++) cout << vec[i] << " ";
+    cout << "Time-sd: ";
+    for(int i=0; i<5; i++) cout << vec[i] << "-" << sd[i] <<  " ";
     cout << "\n" << "Speed Comparison: ";
     for(int i=0; i<5; i++) cout << vec[0]/vec[i] << " ";
     cout << "\n";
@@ -135,19 +135,24 @@ int main()
     // vd vec = getTimes(51);
     // speedComp(vec);
 
-    vd vec(5);
-    vd vecs[10];
-    for(int i=0; i<10; i++)
-        vecs[i] = getTimes(45);
+    vd vec(5), sd(5);
+    vd vecs[5];
+    for(int i=0; i<5; i++)
+        vecs[i] = getTimes(51);
 
     for(int i=0; i<5; i++)
     {
         vec[i] = 0;
-        for(int j=0; j<10; j++)
+        for(int j=0; j<5; j++)
             vec[i] += vecs[j][i];
         vec[i] /= 10;
+
+        sd[i] = 0;
+        for(int j=0; j<5; j++)
+            sd[i] += (vecs[j][i] - vec[i]) * (vecs[j][i] - vec[i]);
+        sd[i] = sqrt(sd[i]/10);
     }
-    speedComp(vec);
+    speedComp(vec, sd);
 
     return 0;
 }
