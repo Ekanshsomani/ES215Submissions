@@ -2,7 +2,20 @@
 
 **Course:** ES 215: Computer Organization and Architecture <br>
 **Name:** Ekansh Somani <br>
-**Roll Number:** 20110065
+**Roll Number:** 20110065 <br>
+**Github Repository Link:** [github.com/EkanshSomani/ES215Submissions](https://github.com/Ekanshsomani/ES215Submissions/tree/main)
+
+- [Assignment 1](#assignment-1)
+  - [Q1](#q1)
+    - [Table 1: Time Taken (in seconds)](#table-1-time-taken-in-seconds)
+    - [Table 2: Speed Comparison (faster by factor)](#table-2-speed-comparison-faster-by-factor)
+    - [Conclusion](#conclusion)
+  - [Q2](#q2)
+    - [Case A: Integer Data Type](#case-a-integer-data-type)
+    - [Case B: Double Data Type](#case-b-double-data-type)
+    - [Conclusion](#conclusion-1)
+  - [Appendix](#appendix)
+    - [A1: Q1 Code](#a1-q1-code)
 
 ## Q1
 
