@@ -9,11 +9,10 @@ int main(int argc, char* argv[])
 {
     timespec start, inter, end;
 
-    clock_gettime(CLOCK_MONOTONIC, &start);
     int n = atoi(argv[1]);
     vvi a(n, vi(n, 99.99)), b(n, vi(n, 99.99)), c(n, vi(n, 0.0));
 
-    clock_gettime(CLOCK_MONOTONIC, &inter);
+    clock_gettime(CLOCK_MONOTONIC, &start);
     for(int i=0; i<n; i++)
         for(int j=0; j<n; j++)
             for(int k=0; k<n; k++)
@@ -22,10 +21,9 @@ int main(int argc, char* argv[])
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     double startTime = start.tv_sec + start.tv_nsec*1e-9;
-    double midTime = inter.tv_sec + inter.tv_nsec*1e-9;
     double endTime = end.tv_sec + end.tv_nsec*1e-9;
 
-    printf("Meat1: %.3f, Meat2: %.3f\n", midTime-startTime, endTime-midTime);
+    printf("Meat: %.3f\n", endTime-startTime);
     // printf("%lld, %lld, %lld\n", start, inter, end);
     return 0;
 }

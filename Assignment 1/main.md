@@ -18,7 +18,7 @@ Points to keep in mind:
 - In recursion with Memoization, list could be created by simply calling the function once for the highest value, or it could be created incrementally. I have reported results for both the ways.
 
 ### Table 1: Time Taken (in seconds)
-| Method | Recursion | Loops | Memoized Recursion (incr) | Memoized Recursion | Memoized Loops |
+| Method | Recursion | Loops &nbsp;&nbsp;&nbsp; | Memoized Recursion | Memoized Recursion (single call) | Memoized Loops |
 | --- | --- | --- | --- | --- | --- |
 | n=50 | 160.151 | 3.6e-06 | 7e-07 | 5e-07 | 2e-07 |
 | n=15 | 4.1e-06 | 3.2e-07 | 1.8e-07 | 1.4e-07 | 7e-08 |
@@ -53,10 +53,12 @@ Memoized loops are the fastest way to compute fibonacci numbers. Single Function
 
 Now, the question leaves me confused regarding a lot of things. So here are the assumptions I make:
 
+- C++ program is assumed to be pre-compiled. In other words, I use time command to only measure the execution time and use it as program execution time.
 - For Part 1, I report the `user` and `sys` times as CPU and system time asked for in question.
 - For Part 2:
-  - Total Program Execution Time = `user` + `sys` Time.
+  - Total Program Execution Time = `user` + `sys` + 0.01.
   - Initializing variables and Executing the multiplication are the two meat portions I focus on.
+  - I had to add 0.01 total program execution time because of the low precision of the time command in linux. This however means that the values for low N aren't reliable, as they are in the range of 0.00 to 0.05. Thus, the final proportion for the meat part was assumed to be the one returned by higher values of N.
 - For Part 3:
   - Program Execution time = `user` time
   - System time = `sys` time
@@ -66,44 +68,117 @@ My Output Report (dimensions of the output)
 - n (5 values)
 - Int or Float (2 values)
 - program type (3 values)
-- user and sys (2 values)
-- median, standard deviation
+- user, sys, meat1, meat2 (4 values)
+- median, standard deviation $\pm$
  -->
+
+Also a note regarding the tables:
+
+- All the times given are in seconds.
+- Table entries are in the form median $\pm$ standard deviation.
+- Table for each language will report time it took to execute the meat portion, real time, user time, sys time and mean of ratios of meat time to execution time for all values of n.
+- Row for the ratio of meat time to execution time is labelled as prop. Mean of proportion is also given for all values of N and last 3 values of N after each tbale.
 
 ### Case A: Integer Data Type
 
-| Real | 64 | 128 | 256 | 512 | 1024 |
+| C++ | 64 | 128 | 256 | 512 | 1024 |
 | --- | --- | --- | --- | --- | ---- |
-| Python | | | | | |
-| Numpy | | | | | |
-| C++ | | | | | |
+| meat | 0.005±0.001 | 0.035±0.005 | 0.268±0.002 | 2.271±0.114 | 17.947±0.492 |
+| real | 0.010±0.006 | 0.040±0.010 | 0.270±0.006 | 2.280±0.116 | 17.960±0.494 |
+| user | 0.000±0.006 | 0.030±0.006 | 0.270±0.006 | 2.260±0.117 | 17.950±0.494 |
+| sys | 0.000±0.000 | 0.000±0.000 | 0.000±0.006 | 0.000±0.000 | 0.010±0.006 |
+| prop | 0.383 | 0.817 | 0.960 | 0.997 | 0.999 |
 
-| User | 64 | 128 | 256 | 512 | 1024 |
-| --- | --- | --- | --- | --- | ---- |
-| Python | | | | | |
-| Numpy | | | | | |
-| C++ | | | | | |
+mean of proportion: 
+  - Over all values of N: 0.8311617929811957
+  - Over last 3 values of N: 0.9853
 
-| Sys | 64 | 128 | 256 | 512 | 1024 |
-| --- | --- | --- | --- | --- | ---- |
-| Python | | | | | |
-| Numpy | | | | | |
-| C++ | | | | | |
 
-| meat1 | 64 | 128 | 256 | 512 | 1024 |
+| Python | 64 | 128 | 256 | 512 | 1024 |
 | --- | --- | --- | --- | --- | ---- |
-| Python | | | | | |
-| Numpy | | | | | |
-| C++ | | | | | |
+| meat | 0.120±0.008 | 0.852±0.087 | 5.786±0.137 | 48.938±3.065 | 451.557±40.034 |
+| real | 0.15±0.023 | 0.88±0.083 | 5.82±0.135 | 48.99±3.075 | 451.67±40.018 |
+| user | 0.12±0.012 | 0.86±0.074 | 5.78±0.106 | 48.94±3.067 | 451.44±40.059 |
+| sys | 0.0±0.006 | 0.0±0.006 | 0.03±0.030 | 0.05±0.015 | 0.19±0.036 |
+| prop | 0.865 | 0.977 | 0.995 | 0.999 | 0.999 |
 
-| meat2 | 64 | 128 | 256 | 512 | 1024 |
+mean of proportion:
+  - Over all values of N: 0.9675217952976901
+  - Over last 3 values of N: 0.997
+
+
+| Numpy | 64 | 128 | 256 | 512 | 1024 |
 | --- | --- | --- | --- | --- | ---- |
-| Python | | | | | |
-| Numpy | | | | | |
-| C++ | | | | | |
+| meat | 0.000±0.000 | 0.002±0.001 | 0.065±0.008 | 1.971±0.063 | 14.811±1.499 |
+| real | 0.190±0.099 | 0.200±0.040 | 0.260±0.017 | 2.160±0.070 | 14.970±1.507 |
+| user | 0.990±0.025 | 1.020±0.017 | 1.070±0.015 | 2.940±0.089 | 15.810±1.524 |
+| sys | 0.030±0.032 | 0.030±0.026 | 0.030±0.020 | 0.050±0.010 | 0.070±0.036 |
+| prop | 0.000 | 0.003 | 0.060 | 0.653 | 0.929 |
+
+mean of proportion: 
+  - Over all values of N: 0.32912055200433005
+  - Over last 3 values of N: 0.5473
+
+**Graphs:**
+
+![User Time Comparison](image.png)
+![Sys Time Comparson](image-1.png)
+
+Note: There are supposed to be 3 points for each language for each value of N. Some points are missing because zero values aren't visible as y is on log scale. Thus missing points should be assumed to be zero.
 
 ### Case B: Double Data Type
 
+| C++ | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| meat | 0.006±0.002 | 0.033±0.003 | 0.298±0.036 | 2.663±0.225 | 22.399±1.171 |
+| real | 0.010±0.006 | 0.040±0.000 | 0.300±0.035 | 2.670±0.224 | 22.420±1.169 |
+| user | 0.000±0.006 | 0.030±0.000 | 0.300±0.038 | 2.660±0.228 | 22.400±1.175 |
+| sys | 0.000±0.006 | 0.000±0.006 | 0.000±0.000 | 0.000±0.000 | 0.010±0.006 |
+| prop | 0.350 | 0.810 | 0.971 | 0.996 | 0.999 |
+
+mean of proportion:
+  - Over all values of N: 0.8252008922063341
+  - Over last 3 values of N: 0.9886
+
+| Python | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| meat | 0.079±0.006 | 0.610±0.049 | 5.074±0.360 | 46.664±6.880 | 350.864±6.601 |
+| real | 0.110±0.006 | 0.640±0.045 | 5.110±0.356 | 46.710±6.882 | 350.980±6.601 |
+| user | 0.080±0.006 | 0.610±0.040 | 5.100±0.358 | 46.640±6.870 | 350.750±6.529 |
+| sys | 0.000±0.006 | 0.000±0.006 | 0.010±0.010 | 0.040±0.006 | 0.170±0.072 |
+| prop | 0.831 | 0.975 | 0.994 | 0.999 | 1.000 |
+
+mean of proportion:
+  - Over all values of N: 0.9598278695399358
+  - Over last 3 values of N: 0.9976
+
+
+| Numpy | 64 | 128 | 256 | 512 | 1024 |
+| --- | --- | --- | --- | --- | ---- |
+| meat | 0.000±0.000 | 0.008±0.003 | 0.009±0.002 | 0.013±0.000 | 0.056±0.023 |
+| real | 0.180±0.015 | 0.220±0.021 | 0.200±0.036 | 0.190±0.012 | 0.260±0.032 |
+| user | 1.030±0.055 | 1.260±0.155 | 1.070±0.012 | 1.060±0.046 | 1.540±0.272 |
+| sys | 0.010±0.015 | 0.090±0.046 | 0.130±0.079 | 0.070±0.035 | 0.100±0.023 |
+| prop | 0.000 | 0.005 | 0.007 | 0.012 | 0.039 |
+
+mean of proportion:
+  - Over all values of N: 0.012631899668762308
+  - Over last 3 values of N: 0.0193
+
+**Graphs:**
+
+![User time comparison](image-2.png)
+![Sys time comparison](image-3.png)
+
+### Conclusion
+
+- Python is extremely slow. C++ is much faster than Python. But Python with Numpy gives almost the same and in many cases faster performance than C++. 
+- C++ slows down a bit for operation on the doubles. No such effect is observed on Python and Numpy. This leads Numpy being much faster than C++ for operation on doubles.
+- Meat portions consitute about 98% of execution time for Python and C++. But for Numpy, that portion is about 50% at low values of N. But still reaches above 90% for higher values for Integer data types. But its less than 20% for Float data types. 
+  - This indicates that a lot of speedup is still possible for Python and C++, as the multiplications can be parellelized.
+  - But for Numpy with Float data types, the speedup won't be that much.
+  
+I haven't added the code for this question in appendix. Please refer to the github repository for the code.
 
 ## Appendix
 

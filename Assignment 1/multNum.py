@@ -2,7 +2,7 @@ import numpy as np
 from sys import argv
 from time import time_ns
 
-start = time_ns()
+startTime = time_ns()
 
 def intOrFloat(value):
     try:
@@ -16,13 +16,10 @@ el = intOrFloat(argv[2])
 a = np.full((n, n), el)
 b = a.copy()
 
-inter = time_ns
-
+startTime = time_ns()
 c = a@b
+completionTime = time_ns()
 
-end = time_ns()
-
-print(inter-start, end-inter)
-# print(start, inter, end)
+print("meat:", (completionTime - startTime)/1e9)
 
 
