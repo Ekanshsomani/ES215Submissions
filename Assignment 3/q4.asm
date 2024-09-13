@@ -1,36 +1,35 @@
 .data
-num1: .word 5       # First number
-num2: .word 3       # Second number
-result: .word 0     # To store the result
+num1:   .word   5                               # First number
+num2:   .word   3                               # Second number
+result: .word   0                               # To store the result
 
 .text
-.globl main
+        .globl  main
 main:
     # Load the numbers into registers
-    lw $t0, num1     # Load num1 into $t0
-    lw $t1, num2     # Load num2 into $t1
-    lw $t2, result   # Load result into $t2 (initially 0)
+    lw      $t0,        num1                    # a = num1
+    lw      $t1,        num2                    # b = num2
+    lw      $t2,        result                  # ans = 0 (result)
 
     # Initialize temporary registers
-    move $t3, $zero  # $t3 will be used to store the shifted num1
-    move $t4, $zero  # $t4 will be used as a counter
+    move    $t3,        $zero                   # int i = 0;
 
 multiply:
-    beq $t4, 32, end_multiply  # If counter equals 32, end loop
-    andi $t5, $t1, 1           # Check if the least significant bit of num2 is 1
-    beq $t5, $zero, skip_add   # If the bit is 0, skip addition
-    add $t2, $t2, $t0          # Add num1 to result
+    beq     $t3,        32,     end_multiply    # while(i < 32){
+    andi    $t4,        $t1,    1               # b & 1
+    beq     $t4,        $zero,  skip_add        # if(b & 1)
+    add     $t2,        $t2,    $t0             # ans += a;
 
 skip_add:
-    sll $t0, $t0, 1            # Left shift num1 by 1
-    srl $t1, $t1, 1            # Right shift num2 by 1
-    addi $t4, $t4, 1           # Increment counter
-    j multiply                 # Repeat the loop
+    sll     $t0,        $t0,    1               # a <<= 1;
+    srl     $t1,        $t1,    1               # b >>= 1;
+    addi    $t3,        $t3,    1               # i++;
+    j       multiply                            # }
 
 end_multiply:
     # Store the result back to memory
-    sw $t2, result
+    sw      $t2,        result
 
     # Exit the program
-    li $v0, 10
+    li      $v0,        10
     syscall
