@@ -60,9 +60,21 @@ int multiply(uint32_t a, uint32_t b)
     return ans; //return performs static cast
 }
 
-int findNum(int arr[], int X)
+tuple<int, int, int> findNum(int arr[], int X)
 {
-    int i = 0;
+    int iterations = 0;
+    int left = 0;
+    int right = 9;
+    while(left <= right)
+    {
+        iterations++;
+        int mid = (left + right) >> 1;
+        if(arr[mid] == X) return {1, iterations, mid};
+        else if(arr[mid] < X) left = mid + 1;
+        else right = mid - 1;
+    }
+
+    return {2, -1, -1};
 }
 
 int findChar(char arr[], char c, int arrLength)
