@@ -12,7 +12,7 @@ int subtract(int16_t a, int16_t b)
     return p+q;
 }
 
-int average(int arr[])
+float average(int arr[])
 {
     int ans = 0;
     int i = 0;
@@ -21,11 +21,11 @@ int average(int arr[])
         ans += arr[i];
         i++;
     }
-    ans /= 15;
-    return ans;
+
+    return ans/15.00;
 }
 
-int gcd(int p, int q)
+int lcm(int p, int q)
 {
     int temp, a{p}, b{q};
     if(b > a)

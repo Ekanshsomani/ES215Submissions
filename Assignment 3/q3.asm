@@ -2,12 +2,15 @@
 PQ: .word   10, 5, 0, 0             # Example values for p and q
 
 .text   
-    .globl  MAIN
-MAIN:
+    .globl  main
+main:
     la      $gp,    PQ              # Load address of pq into $gp
 
 
     jal     LCM                     # Call the Lcm function
+    addi    $a0,    $s0,        0   # store output for printing
+    li      $v0,    1               # print integer code
+    syscall                         # print output
 
     # Exit the program
     li      $v0,    10
@@ -35,8 +38,6 @@ LOOP:
 DONE:
     div     $s1,    $t1             # LO = q / b
     mflo    $s1                     # q = LO
-    mul     $s0,    $s1             # HI, LO = p * q
-    mflo    $t0                     # t0 = LO
-    sw      $t0,    8($gp)          # store t0(LO) in lower bits
-    mfhi    $t0                     # t0 = HI
-    sw      $t0,    12($gp)         # store t0(HI) in higher bits
+    mul     $s0,    $s0,        $s1 # HI, LO = p * q
+    sw      $s0,    8($gp)          # store t0(LO) in lower bits
+    j       $ra

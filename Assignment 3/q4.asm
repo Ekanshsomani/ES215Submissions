@@ -4,7 +4,7 @@ num2:   .word   3                               # Second number
 result: .word   0                               # To store the result
 
 .text
-        .globl  main
+.globl  main
 main:
     # Load the numbers into registers
     lw      $t0,        num1                    # a = num1
@@ -29,6 +29,10 @@ skip_add:
 end_multiply:
     # Store the result back to memory
     sw      $t2,        result
+
+    addi    $a0,        $t2,    0               # load value into a0
+    li      $v0,        1                       # print integer
+    syscall
 
     # Exit the program
     li      $v0,        10

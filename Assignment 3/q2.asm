@@ -3,14 +3,15 @@ ARRAY: .word 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15  # Example array
 RESULT: .word 0   # To store the result
 
 .text
-.globl MAIN
-MAIN:
-    la $s0, ARRAY                    # Load the base address of the array into $s0
+.globl main
+main:
+    la      $s0,    ARRAY            # Load the base address of the array into $s0
 
-    jal AVERAGE                      # Call the Average function
+    jal     AVERAGE                  # Call the Average function
 
-    mflo $t0
-    sw $t0, RESULT                   # Store the result back to memory
+    mov.s   $f12,   $f2              #
+    li      $v0,    2                # print float syscall code
+    syscall
 
     # Exit the program
     li $v0, 10
@@ -29,5 +30,10 @@ LOOP:
 
 DONE:
     addi    $t0,    $zero,      15  # t0 = 15
-    div     $s1,    $t0
+    mtc1    $s1,    $f0             #
+    mtc1    $t0,    $f1             #
+    cvt.s.w $f0,    $f0             #
+    cvt.s.w $f1,    $f1             #
+    div.s   $f2,    $f0,        $f1 # 
+    s.s     $f2,    RESULT          #
     jr      $ra                     # global will find their answer in $LO

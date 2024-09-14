@@ -14,6 +14,10 @@ main:
     la      $s3,        result                      # address to store the result
     jal     findChar
 
+    addi    $a0,        $t0,            0           #
+    li      $v0,        1                           #
+    syscall
+
     li      $v0,        10                          # Exitting the program
     syscall
 
@@ -23,7 +27,7 @@ findChar:
 
 loop:
     beq     $t0,        $t1,            not_found   # end if i==arrLength
-    lb      $t2,        $t0                         # load arr[i]
+    lb      $t2,        0($t0)                      # load arr[i]
     beq     $t2,        $s1,            found       # if arr[i] == c
     addi    $t0,        $t0,            1           # i++
     j       loop
